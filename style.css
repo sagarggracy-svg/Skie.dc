@@ -10,12 +10,12 @@
   --bg-card-hover: #171829;
   --bg-sidebar: #0e0f18;
   --bg-input: #1a1b2d;
-  --border-color: rgba(139, 92, 246, 0.18);
-  --border-active: rgba(168, 85, 247, 0.5);
+  --border-color: rgba(239, 68, 68, 0.18);
+  --border-active: rgba(220, 38, 38, 0.5);
 
-  --accent-purple: #8b5cf6;
-  --accent-violet: #a855f7;
-  --accent-glow: rgba(139, 92, 246, 0.35);
+  --accent-purple: #ef4444;
+  --accent-violet: #dc2626;
+  --accent-glow: rgba(239, 68, 68, 0.35);
 
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
@@ -196,12 +196,12 @@ body {
 
 .sidebar-link:hover {
   color: var(--text-main);
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(239, 68, 68, 0.08);
 }
 
 .sidebar-link.active {
   color: #fff;
-  background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.2), transparent);
   border-left: 3px solid var(--accent-purple);
 }
 
@@ -290,9 +290,9 @@ body {
 }
 
 .chip {
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(239, 68, 68, 0.15);
   color: #c4b5fd;
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 0.75rem;
