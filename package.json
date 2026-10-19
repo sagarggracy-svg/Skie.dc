@@ -1,0 +1,18 @@
+{
+  "name": "skie-website",
+  "version": "2.0.0",
+  "description": "Official Web Portal & Server Management Dashboard for Skie Discord Bot",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "discord-bot",
+    "dashboard",
+    "skie",
+    "antinuke",
+    "music-bot"
+  ],
+  "author": "Skie Team",
+  "license": "MIT"
+}
