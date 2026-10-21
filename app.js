@@ -13,7 +13,7 @@ let isDemoMode = false;
 // Mock / Known Bot Guilds for demo and verification
 const KNOWN_BOT_GUILDS = new Set(["1001", "1002"]);
 
-// Realistic Demo Servers (For users testing without OAuth2 credentials)
+// Realistic Demo Servers (For testing without OAuth2 credentials)
 const DEMO_SERVERS = [
   {
     id: "1001",
@@ -470,7 +470,7 @@ function exportServerSnapshot() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `skie_${currentGuild.name.replace(/\s+/g, '_')}_snapshot.json`;
+  a.download = `skie_${currentGuild.name.replace(/\\s+/g, '_')}_snapshot.json`;
   a.click();
   URL.revokeObjectURL(url);
   showToast("📥 Exported server JSON snapshot!");
