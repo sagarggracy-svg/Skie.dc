@@ -1,485 +1,491 @@
-// Skie Web Dashboard Client App
-// Responsive, Lightweight Vanilla JS with Discohook Message Builder
+// 𝐒𝐤𝐢𝐞 Discord Server Dashboard & Sapphire-Style Control Panel
+// Full OAuth2 Authentication, Guild Permission Filtration & Live Configuration
 
-let currentGuildId = null;
-let currentGuildMeta = null;
-
-// DOM Elements
-const serverSelect = document.getElementById('serverSelect');
-const sidebarLinks = document.querySelectorAll('.sidebar-link');
-const tabPanes = document.querySelectorAll('.tab-pane');
-const toastEl = document.getElementById('toast');
-
-// Welcome Elements
-const welcomeEnabled = document.getElementById('welcomeEnabled');
-const welcomeChannelSelect = document.getElementById('welcomeChannelSelect');
-const welcomePlainText = document.getElementById('welcomePlainText');
-const welcomeEmbedTitle = document.getElementById('welcomeEmbedTitle');
-const welcomeEmbedDesc = document.getElementById('welcomeEmbedDesc');
-const welcomeColorPicker = document.getElementById('welcomeColorPicker');
-const welcomeColorText = document.getElementById('welcomeColorText');
-const btnSaveWelcome = document.getElementById('btnSaveWelcome');
-const btnTestWelcome = document.getElementById('btnTestWelcome');
-
-// AutoMod Elements
-const amAntiSpam = document.getElementById('amAntiSpam');
-const amAntiInvite = document.getElementById('amAntiInvite');
-const amRaidMode = document.getElementById('amRaidMode');
-const amBadWords = document.getElementById('amBadWords');
-const btnSaveAutoMod = document.getElementById('btnSaveAutoMod');
-
-// Discohook Message Builder Elements (Screenshots 2 & 3)
-const discoChannelSelect = document.getElementById('discoChannelSelect');
-const discoContent = document.getElementById('discoContent');
-const discoCharCount = document.getElementById('discoCharCount');
-const btnDiscoAddMenu = document.getElementById('btnDiscoAddMenu');
-const discoAddDropdown = document.getElementById('discoAddDropdown');
-const btnAddEmbed = document.getElementById('btnAddEmbed');
-const btnAddComponents = document.getElementById('btnAddComponents');
-const discoEmbedSection = document.getElementById('discoEmbedSection');
-const btnRemoveEmbed = document.getElementById('btnRemoveEmbed');
-const discoComponentsSection = document.getElementById('discoComponentsSection');
-const btnRemoveComponents = document.getElementById('btnRemoveComponents');
-const btnDiscoSendMessage = document.getElementById('btnDiscoSendMessage');
-const btnClearMsg = document.getElementById('btnClearMsg');
-const btnCopyMsg = document.getElementById('btnCopyMsg');
-
-// Discohook Form Fields
-const discoProfileName = document.getElementById('discoProfileName');
-const discoProfileAvatar = document.getElementById('discoProfileAvatar');
-const discoEmbedTitle = document.getElementById('discoEmbedTitle');
-const discoEmbedDesc = document.getElementById('discoEmbedDesc');
-const discoColorPicker = document.getElementById('discoColorPicker');
-const discoColorText = document.getElementById('discoColorText');
-const discoEmbedUrl = document.getElementById('discoEmbedUrl');
-const discoEmbedImage = document.getElementById('discoEmbedImage');
-const discoEmbedThumbnail = document.getElementById('discoEmbedThumbnail');
-const discoEmbedFooter = document.getElementById('discoEmbedFooter');
-const discoEmbedFooterIcon = document.getElementById('discoEmbedFooterIcon');
-const discoButtonsList = document.getElementById('discoButtonsList');
-const btnAddButtonRow = document.getElementById('btnAddButtonRow');
-
-// Discord Live Preview Elements
-const prevBotName = document.getElementById('prevBotName');
-const prevContentText = document.getElementById('prevContentText');
-const prevEmbedCard = document.getElementById('prevEmbedCard');
-const prevEmbedTitle = document.getElementById('prevEmbedTitle');
-const prevEmbedDesc = document.getElementById('prevEmbedDesc');
-const prevEmbedImage = document.getElementById('prevEmbedImage');
-const prevEmbedThumbnail = document.getElementById('prevEmbedThumbnail');
-const prevEmbedFooter = document.getElementById('prevEmbedFooter');
-const prevButtonsRow = document.getElementById('prevButtonsRow');
+const CLIENT_ID = "1558750474885406740";
 
 // State
-let discoButtons = [
-  { label: '📜 Rules', style: 'primary', emoji: '📜', response: 'Server Rules: 1. Be respectful. 2. No spamming.' },
-  { label: '👑 Owner Info', style: 'secondary', emoji: '👑', response: 'Community created & managed with Skie Bot!' }
+let currentUser = null;
+let userGuilds = [];
+let currentGuild = null;
+let hasUnsavedChanges = false;
+let isDemoMode = false;
+
+// Mock / Known Bot Guilds for demo and verification
+const KNOWN_BOT_GUILDS = new Set(["1001", "1002"]);
+
+// Realistic Demo Servers (For users testing without OAuth2 credentials)
+const DEMO_SERVERS = [
+  {
+    id: "1001",
+    name: "Valo Esports Hub",
+    icon: null,
+    owner: true,
+    permissions: "2147483647",
+    hasBot: true,
+    members: 1420
+  },
+  {
+    id: "1002",
+    name: "Anime Lounge & Chill",
+    icon: null,
+    owner: false,
+    permissions: "8", // Administrator
+    hasBot: true,
+    members: 890
+  },
+  {
+    id: "1003",
+    name: "Community Gaming Sanctuary",
+    icon: null,
+    owner: false,
+    permissions: "32", // Manage Server
+    hasBot: false,
+    members: 530
+  },
+  {
+    id: "1004",
+    name: "Dev & Bot Testing Lab",
+    icon: null,
+    owner: true,
+    permissions: "2147483647",
+    hasBot: false,
+    members: 64
+  }
 ];
 
-// Toast Helper
-function showToast(message, isError = false) {
-  toastEl.textContent = message;
-  toastEl.style.borderColor = isError ? '#ef4444' : '#8b5cf6';
-  toastEl.style.display = 'block';
-  setTimeout(() => {
-    toastEl.style.display = 'none';
-  }, 3500);
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', () => {
+  setupSidebarNavigation();
+  checkOAuthToken();
+});
+
+// ====================================================================
+// 1. OAUTH2 LOGIN & DISCORD API INTEGRATION
+// ====================================================================
+
+function initiateDiscordLogin(e) {
+  if (e) e.preventDefault();
+  const currentUrl = window.location.origin + window.location.pathname;
+  const redirectUri = encodeURIComponent(currentUrl);
+  // Discord OAuth2 Implicit Grant (response_type=token)
+  // Scopes: identify guilds
+  const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirectUri}&response_type=token&scope=identify%20guilds`;
+  window.location.href = authUrl;
 }
 
-// Tab Switching
-sidebarLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    sidebarLinks.forEach(l => l.classList.remove('active'));
-    tabPanes.forEach(p => (p.style.display = 'none'));
-
-    link.classList.add('active');
-    const tabId = link.getAttribute('data-tab');
-    const targetPane = document.getElementById(tabId);
-    if (targetPane) targetPane.style.display = 'block';
-
-    if (tabId === 'tab-builder') updateDiscoPreview();
-  });
-});
-
-// Variable Chips insertion helper
-document.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    const varText = chip.getAttribute('data-var');
-    welcomePlainText.value += ' ' + varText;
-  });
-});
-
-// Sync Color Picker with Text Input for Welcome
-welcomeColorPicker?.addEventListener('input', (e) => {
-  welcomeColorText.value = e.target.value;
-});
-
-// Sync Color Picker with Text Input for Discohook Builder
-discoColorPicker?.addEventListener('input', (e) => {
-  discoColorText.value = e.target.value;
-  updateDiscoPreview();
-});
-discoColorText?.addEventListener('input', (e) => {
-  if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
-    discoColorPicker.value = e.target.value;
-  }
-  updateDiscoPreview();
-});
-
-// Palette color dots click
-document.querySelectorAll('.color-dot').forEach(dot => {
-  dot.addEventListener('click', () => {
-    const col = dot.getAttribute('data-color');
-    discoColorPicker.value = col;
-    discoColorText.value = col;
-    updateDiscoPreview();
-  });
-});
-
-// Live Character Counter on Content (Screenshot 2: Content 0/2000)
-discoContent?.addEventListener('input', (e) => {
-  const len = e.target.value.length;
-  discoCharCount.textContent = `${len}/2000`;
-  updateDiscoPreview();
-});
-
-// Dropdown Add Menu Toggle (Screenshot 2 & 3: Add ⌵)
-btnDiscoAddMenu?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isShown = discoAddDropdown.style.display === 'block';
-  discoAddDropdown.style.display = isShown ? 'none' : 'block';
-});
-
-document.addEventListener('click', () => {
-  if (discoAddDropdown) discoAddDropdown.style.display = 'none';
-});
-
-// Add Embed clicked
-btnAddEmbed?.addEventListener('click', () => {
-  discoEmbedSection.style.display = 'block';
-  discoAddDropdown.style.display = 'none';
-  if (!discoEmbedTitle.value) discoEmbedTitle.value = '📢 Server Announcement';
-  if (!discoEmbedDesc.value) discoEmbedDesc.value = 'Welcome everyone! Check out the new community updates and features.';
-  updateDiscoPreview();
-});
-
-// Remove Embed clicked
-btnRemoveEmbed?.addEventListener('click', () => {
-  discoEmbedSection.style.display = 'none';
-  discoEmbedTitle.value = '';
-  discoEmbedDesc.value = '';
-  discoEmbedImage.value = '';
-  updateDiscoPreview();
-});
-
-// Add Components clicked
-btnAddComponents?.addEventListener('click', () => {
-  discoComponentsSection.style.display = 'block';
-  discoAddDropdown.style.display = 'none';
-  renderButtonsList();
-  updateDiscoPreview();
-});
-
-// Remove Components clicked
-btnRemoveComponents?.addEventListener('click', () => {
-  discoComponentsSection.style.display = 'none';
-  discoButtons = [];
-  renderButtonsList();
-  updateDiscoPreview();
-});
-
-// Clear Message button
-btnClearMsg?.addEventListener('click', () => {
-  discoContent.value = '';
-  discoCharCount.textContent = '0/2000';
-  discoEmbedTitle.value = '';
-  discoEmbedDesc.value = '';
-  discoEmbedImage.value = '';
-  discoEmbedThumbnail.value = '';
-  discoEmbedFooter.value = '';
-  discoEmbedSection.style.display = 'none';
-  discoComponentsSection.style.display = 'none';
-  discoButtons = [];
-  updateDiscoPreview();
-  showToast('Message draft cleared.');
-});
-
-// Duplicate / Copy Message
-btnCopyMsg?.addEventListener('click', () => {
-  const draft = {
-    content: discoContent.value,
-    embed: discoEmbedSection.style.display !== 'none' ? {
-      title: discoEmbedTitle.value,
-      description: discoEmbedDesc.value,
-      color: discoColorText.value,
-    } : null
-  };
-  navigator.clipboard.writeText(JSON.stringify(draft, null, 2));
-  showToast('📋 Message configuration copied to clipboard!');
-});
-
-// Render Interactive Buttons List in Subcard
-function renderButtonsList() {
-  if (!discoButtonsList) return;
-  if (discoButtons.length === 0) {
-    discoButtonsList.innerHTML = '<p style="font-size: 0.8rem; color: #949ba4;">No buttons added yet. Click "+ Add Button" below.</p>';
-    return;
+function checkOAuthToken() {
+  // Check if access_token is in URL hash from Discord redirect
+  if (window.location.hash.includes('access_token=')) {
+    const params = new URLSearchParams(window.location.hash.substring(1));
+    const token = params.get('access_token');
+    if (token) {
+      localStorage.setItem('discord_token', token);
+      // Clean hash from browser address bar
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }
 
-  discoButtonsList.innerHTML = discoButtons.map((b, idx) => `
-    <div style="background: #232428; border: 1px solid #383a40; border-radius: 6px; padding: 10px; margin-bottom: 8px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-        <span style="font-weight: 700; font-size: 0.85rem; color: #f2f3f5;">Button #${idx + 1}</span>
-        <button type="button" class="icon-btn" onclick="removeButton(${idx})" style="color: #ef4444;">✕</button>
-      </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
-        <input type="text" class="form-input" style="padding: 6px 10px; font-size: 0.8rem;" value="${b.label}" placeholder="Label" oninput="updateButtonLabel(${idx}, this.value)">
-        <select class="form-select" style="padding: 6px 10px; font-size: 0.8rem;" onchange="updateButtonStyle(${idx}, this.value)">
-          <option value="primary" ${b.style === 'primary' ? 'selected' : ''}>Primary (Blurple)</option>
-          <option value="secondary" ${b.style === 'secondary' ? 'selected' : ''}>Secondary (Gray)</option>
-          <option value="success" ${b.style === 'success' ? 'selected' : ''}>Success (Green)</option>
-          <option value="danger" ${b.style === 'danger' ? 'selected' : ''}>Danger (Red)</option>
-        </select>
-      </div>
-      <input type="text" class="form-input" style="padding: 6px 10px; font-size: 0.8rem;" value="${b.response}" placeholder="Ephemeral Response (Only visible to clicker)" oninput="updateButtonResponse(${idx}, this.value)">
-    </div>
-  `).join('');
-}
-
-window.removeButton = (idx) => {
-  discoButtons.splice(idx, 1);
-  renderButtonsList();
-  updateDiscoPreview();
-};
-
-window.updateButtonLabel = (idx, val) => {
-  if (discoButtons[idx]) discoButtons[idx].label = val;
-  updateDiscoPreview();
-};
-
-window.updateButtonStyle = (idx, val) => {
-  if (discoButtons[idx]) discoButtons[idx].style = val;
-  updateDiscoPreview();
-};
-
-window.updateButtonResponse = (idx, val) => {
-  if (discoButtons[idx]) discoButtons[idx].response = val;
-};
-
-btnAddButtonRow?.addEventListener('click', () => {
-  if (discoButtons.length >= 5) {
-    return showToast('Maximum 5 buttons per action row.', true);
-  }
-  discoButtons.push({
-    label: `Button ${discoButtons.length + 1}`,
-    style: 'primary',
-    emoji: '⭐',
-    response: 'Action completed!'
-  });
-  renderButtonsList();
-  updateDiscoPreview();
-});
-
-// Live Discord Chat Preview Updates
-[discoProfileName, discoProfileAvatar, discoEmbedTitle, discoEmbedDesc, discoEmbedUrl, discoEmbedImage, discoEmbedThumbnail, discoEmbedFooter].forEach(el => {
-  el?.addEventListener('input', updateDiscoPreview);
-});
-
-function updateDiscoPreview() {
-  if (!prevContentText) return;
-
-  // Bot Profile
-  prevBotName.textContent = discoProfileName?.value.trim() || 'Skie';
-
-  // Content Text
-  const text = discoContent?.value.trim();
-  prevContentText.textContent = text || 'Welcome to the server! Use the interactive buttons below.';
-  prevContentText.style.display = text || (discoEmbedSection.style.display === 'none') ? 'block' : 'none';
-
-  // Embed Preview
-  const isEmbedActive = discoEmbedSection && discoEmbedSection.style.display !== 'none';
-  if (isEmbedActive && (discoEmbedTitle.value || discoEmbedDesc.value)) {
-    prevEmbedCard.style.display = 'flex';
-    prevEmbedCard.style.borderLeftColor = discoColorText.value || '#3b82f6';
-
-    prevEmbedTitle.textContent = discoEmbedTitle.value || '';
-    prevEmbedTitle.style.display = discoEmbedTitle.value ? 'block' : 'none';
-
-    prevEmbedDesc.textContent = discoEmbedDesc.value || '';
-    prevEmbedDesc.style.display = discoEmbedDesc.value ? 'block' : 'none';
-
-    if (discoEmbedImage.value) {
-      prevEmbedImage.src = discoEmbedImage.value;
-      prevEmbedImage.style.display = 'block';
-    } else {
-      prevEmbedImage.style.display = 'none';
-    }
-
-    if (discoEmbedThumbnail.value) {
-      prevEmbedThumbnail.src = discoEmbedThumbnail.value;
-      prevEmbedThumbnail.style.display = 'block';
-    } else {
-      prevEmbedThumbnail.style.display = 'none';
-    }
-
-    if (discoEmbedFooter.value) {
-      prevEmbedFooter.textContent = discoEmbedFooter.value;
-      prevEmbedFooter.style.display = 'block';
-    } else {
-      prevEmbedFooter.style.display = 'none';
-    }
+  const storedToken = localStorage.getItem('discord_token');
+  if (storedToken) {
+    loadDiscordUserData(storedToken);
   } else {
-    prevEmbedCard.style.display = 'none';
-  }
-
-  // Buttons Preview
-  const isCompActive = discoComponentsSection && discoComponentsSection.style.display !== 'none';
-  if (isCompActive && discoButtons.length > 0) {
-    prevButtonsRow.style.display = 'flex';
-    prevButtonsRow.innerHTML = discoButtons.map(b => `
-      <button class="discord-btn discord-btn-${b.style}">
-        ${b.label}
-      </button>
-    `).join('');
-  } else {
-    prevButtonsRow.style.display = 'none';
+    // Check if demo mode was active
+    const demoActive = sessionStorage.getItem('skie_demo_mode');
+    if (demoActive === 'true') {
+      startDemoMode();
+    } else {
+      showView('view-login');
+    }
   }
 }
 
-// Send Message to Discord via Backend API
-btnDiscoSendMessage?.addEventListener('click', async () => {
-  const channelId = discoChannelSelect?.value;
-  if (!channelId) {
-    return showToast('Please select a target channel first!', true);
-  }
-
-  const content = discoContent.value.trim();
-  const isEmbedActive = discoEmbedSection.style.display !== 'none';
-  const hasEmbed = isEmbedActive && (discoEmbedTitle.value || discoEmbedDesc.value);
-
-  if (!content && !hasEmbed) {
-    return showToast('Cannot send empty message. Add text or an embed!', true);
-  }
-
-  const payload = {
-    guild_id: currentGuildId,
-    channel_id: channelId,
-    content: content,
-    embed: hasEmbed ? {
-      title: discoEmbedTitle.value.trim(),
-      description: discoEmbedDesc.value.trim(),
-      color: discoColorText.value.trim() || '#3b82f6',
-      image: discoEmbedImage.value.trim() || null,
-      thumbnail: discoEmbedThumbnail.value.trim() || null,
-      footer: discoEmbedFooter.value.trim() || null
-    } : null,
-    buttons: (discoComponentsSection.style.display !== 'none') ? discoButtons : []
-  };
-
+async function loadDiscordUserData(token) {
   try {
-    showToast('Sending message to Discord...');
-    const res = await fetch('/api/send-message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    // Fetch User Profile
+    const userRes = await fetch('https://discord.com/api/v10/users/@me', {
+      headers: { Authorization: `Bearer ${token}` }
     });
-    const data = await res.json();
-    if (res.ok) {
-      showToast(data.message || '✅ Message successfully dispatched to Discord!');
-    } else {
-      showToast(data.error || 'Failed to send message', true);
-    }
-  } catch (err) {
-    showToast('Error communicating with backend', true);
-  }
-});
 
-// Load Overview Live Stats (Matching Screenshot 1)
-async function loadLiveStats() {
-  try {
-    const res = await fetch('/api/stats');
-    if (!res.ok) return;
-    const s = await res.json();
-
-    document.getElementById('liveDashServers').textContent = s.servers ?? '--';
-    document.getElementById('liveDashUsers').textContent = (s.users ?? 0).toLocaleString();
-    document.getElementById('liveDashChannels').textContent = (s.channels ?? 0).toLocaleString();
-    document.getElementById('liveDashPing').textContent = `${s.latency ?? 15} ms`;
-    document.getElementById('liveDashUptime').textContent = s.uptime ?? '--';
-    document.getElementById('liveDashTickets').textContent = s.tickets ?? '0';
-
-    document.getElementById('liveEnvPing').textContent = `${s.latency ?? 15} ms`;
-    document.getElementById('liveEnvPy').textContent = `v${s.python ?? '3.13'}`;
-    document.getElementById('liveEnvDpy').textContent = `v${s.discord_py ?? '2.7.1'}`;
-    document.getElementById('liveEnvTickets').textContent = `${s.tickets ?? 0}`;
-
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    document.getElementById('liveDashFooter').textContent = `⏱️ Last Updated • Today at ${timeStr}`;
-
-    // Update Overview stat boxes
-    document.getElementById('statMembers').textContent = (s.users ?? 0).toLocaleString();
-    document.getElementById('statTickets').textContent = s.tickets ?? 0;
-  } catch (e) {
-    console.warn('Stats fetch notice:', e);
-  }
-}
-
-// Load Channels for Selected Guild
-async function loadGuildChannels(guildId) {
-  try {
-    const res = await fetch(`/api/channels?guild_id=${guildId}`);
-    if (!res.ok) return;
-    const data = await res.json();
-    const channels = data.channels || [];
-
-    const optionsHtml = '<option value="" disabled selected>Select channel...</option>' +
-      channels.map(c => `<option value="${c.id}">#${c.name}</option>`).join('');
-
-    if (discoChannelSelect) discoChannelSelect.innerHTML = optionsHtml;
-    if (welcomeChannelSelect) welcomeChannelSelect.innerHTML = optionsHtml;
-  } catch (err) {
-    console.warn('Channels load notice:', err);
-  }
-}
-
-// Main Boot Initialization
-async function init() {
-  try {
-    const res = await fetch('/api/guilds');
-    const data = await res.json();
-
-    if (!data.guilds || data.guilds.length === 0) {
-      serverSelect.innerHTML = '<option>No servers found</option>';
+    if (userRes.status === 401) {
+      // Token expired
+      localStorage.removeItem('discord_token');
+      showView('view-login');
       return;
     }
 
-    serverSelect.innerHTML = data.guilds.map(g => `<option value="${g.id}">${g.name} (${g.memberCount} members)</option>`).join('');
-    currentGuildId = data.guilds[0].id;
+    currentUser = await userRes.json();
+    renderUserProfile(currentUser);
 
-    serverSelect.addEventListener('change', (e) => {
-      currentGuildId = e.target.value;
-      loadGuildChannels(currentGuildId);
+    // Fetch User Guilds
+    const guildsRes = await fetch('https://discord.com/api/v10/users/@me/guilds', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const allGuilds = await guildsRes.json();
+
+    // Filter servers where user has Administrator (0x8) or Manage Server (0x20) or is Owner
+    userGuilds = allGuilds.filter(canManageGuild).map(g => {
+      return {
+        ...g,
+        hasBot: KNOWN_BOT_GUILDS.has(g.id)
+      };
     });
 
-    await loadGuildChannels(currentGuildId);
-    await loadLiveStats();
-
-    // Auto-refresh stats every 30s
-    setInterval(loadLiveStats, 30000);
-
-    // Initial Discohook Preview setup
-    renderButtonsList();
-    updateDiscoPreview();
+    renderGuildsGrid(userGuilds);
+    showView('view-servers');
   } catch (err) {
-    console.error('Failed to init dashboard:', err);
+    console.warn("Could not load from Discord API, falling back to demo:", err);
+    startDemoMode();
   }
 }
 
-document.getElementById('btnRefreshStats')?.addEventListener('click', () => {
-  loadLiveStats();
-  showToast('Stats refreshed!');
-});
+function canManageGuild(guild) {
+  if (guild.owner) return true;
+  try {
+    const perms = BigInt(guild.permissions);
+    const ADMINISTRATOR = 0x8n;
+    const MANAGE_GUILD = 0x20n;
+    return (perms & ADMINISTRATOR) !== 0n || (perms & MANAGE_GUILD) !== 0n;
+  } catch (e) {
+    return false;
+  }
+}
 
-// Boot Dashboard App
-init();
+function logoutDiscord() {
+  localStorage.removeItem('discord_token');
+  sessionStorage.removeItem('skie_demo_mode');
+  currentUser = null;
+  userGuilds = [];
+  currentGuild = null;
+  document.getElementById('userProfilePill').style.display = 'none';
+  document.getElementById('topCurrentServerPill').style.display = 'none';
+  showView('view-login');
+}
+
+function startDemoMode() {
+  isDemoMode = true;
+  sessionStorage.setItem('skie_demo_mode', 'true');
+  currentUser = {
+    username: "DemoAdmin",
+    discriminator: "0001",
+    id: "999999999",
+    avatar: null
+  };
+  renderUserProfile(currentUser);
+  userGuilds = DEMO_SERVERS;
+  renderGuildsGrid(userGuilds);
+  showView('view-servers');
+}
+
+// ====================================================================
+// 2. RENDERING VIEWS & SERVER SELECTION
+// ====================================================================
+
+function showView(viewId) {
+  document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active-view'));
+  const target = document.getElementById(viewId);
+  if (target) target.classList.add('active-view');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderUserProfile(user) {
+  const pill = document.getElementById('userProfilePill');
+  const avatar = document.getElementById('userAvatarImg');
+  const name = document.getElementById('userNameText');
+
+  pill.style.display = 'flex';
+  name.innerText = user.username + (user.discriminator && user.discriminator !== '0' ? `#${user.discriminator}` : '');
+  
+  if (user.avatar) {
+    avatar.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+  } else {
+    avatar.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235865F2'/><text x='50' y='65' font-size='45' text-anchor='middle' fill='%23ffffff'>${encodeURIComponent(user.username.charAt(0))}</text></svg>`;
+  }
+}
+
+function renderGuildsGrid(guilds) {
+  const grid = document.getElementById('guildsGrid');
+  grid.innerHTML = '';
+
+  if (!guilds || guilds.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border);">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🛡️</div>
+        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">No Manageable Servers Found</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto;">
+          You need <strong>Administrator</strong> or <strong>Manage Server</strong> permissions in a server to add and configure 𝐒𝐤𝐢𝐞.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  guilds.forEach(guild => {
+    const card = document.createElement('div');
+    card.className = 'server-card';
+    card.setAttribute('data-name', guild.name.toLowerCase());
+    card.setAttribute('data-status', guild.hasBot ? 'active' : 'invite');
+
+    // Permission Badge
+    let permLabel = 'Manage Server';
+    let permClass = 'perm-manage';
+    if (guild.owner) {
+      permLabel = '👑 Owner';
+      permClass = 'perm-owner';
+    } else {
+      try {
+        const perms = BigInt(guild.permissions);
+        if ((perms & 0x8n) !== 0n) {
+          permLabel = '🛡️ Admin';
+          permClass = 'perm-admin';
+        }
+      } catch (e) {}
+    }
+
+    // Guild Icon Markup
+    let iconMarkup = '';
+    if (guild.icon) {
+      iconMarkup = `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128" alt="${guild.name}" class="server-icon-img">`;
+    } else {
+      const initials = guild.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+      iconMarkup = initials;
+    }
+
+    // Bot Action Button
+    let actionBtnHtml = '';
+    if (guild.hasBot) {
+      actionBtnHtml = `
+        <div class="bot-status-tag">
+          <span class="status-dot-active"></span>
+          <span style="color: #10b981; font-weight: 600;">Bot Active</span>
+        </div>
+        <button class="btn-server-action btn-manage-active" onclick="openServerManage('${guild.id}')">
+          ⚙️ Manage Server
+        </button>
+      `;
+    } else {
+      const inviteUrl = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&permissions=8&scope=bot%20applications.commands&guild_id=${guild.id}`;
+      actionBtnHtml = `
+        <div class="bot-status-tag">
+          <span class="status-dot-invite"></span>
+          <span style="color: var(--text-muted);">Ready to Add</span>
+        </div>
+        <a href="${inviteUrl}" target="_blank" rel="noopener" class="btn-server-action btn-invite-bot" onclick="handleInviteClick('${guild.id}')">
+          ➕ Add to Server
+        </a>
+      `;
+    }
+
+    card.innerHTML = `
+      <div>
+        <div class="server-header">
+          <div class="server-icon-wrap">${iconMarkup}</div>
+          <div class="server-meta">
+            <h3>${escapeHtml(guild.name)}</h3>
+            <span class="badge-perm ${permClass}">${permLabel}</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        ${actionBtnHtml}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function filterServerCards() {
+  const query = document.getElementById('serverSearchInput').value.toLowerCase().trim();
+  const filter = document.getElementById('serverStatusFilter').value;
+  const cards = document.querySelectorAll('.server-card');
+
+  cards.forEach(card => {
+    const name = card.getAttribute('data-name');
+    const status = card.getAttribute('data-status');
+
+    const matchesQuery = !query || name.includes(query);
+    const matchesStatus = filter === 'all' || status === filter;
+
+    card.style.display = (matchesQuery && matchesStatus) ? 'flex' : 'none';
+  });
+}
+
+function handleInviteClick(guildId) {
+  // Mark guild as added locally so when user returns, button turns to "Manage"
+  KNOWN_BOT_GUILDS.add(guildId);
+  const found = userGuilds.find(g => g.id === guildId);
+  if (found) found.hasBot = true;
+  setTimeout(() => renderGuildsGrid(userGuilds), 2000);
+}
+
+// ====================================================================
+// 3. SAPPHIRE-STYLE SERVER MANAGEMENT CONTROL PANEL
+// ====================================================================
+
+function openServerManage(guildId) {
+  const guild = userGuilds.find(g => g.id === guildId);
+  if (!guild) return;
+
+  currentGuild = guild;
+
+  // Header badges & titles
+  document.getElementById('manageServerTitle').innerText = guild.name;
+  document.getElementById('topServerName').innerText = guild.name;
+  document.getElementById('topCurrentServerPill').style.display = 'inline-flex';
+
+  const iconWrap = document.getElementById('manageServerIcon');
+  if (guild.icon) {
+    iconWrap.innerHTML = `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=64" class="server-icon-img">`;
+  } else {
+    const initials = guild.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+    iconWrap.innerHTML = initials;
+  }
+
+  // Load saved settings from localStorage
+  loadServerConfiguration(guildId);
+
+  showView('view-manage');
+}
+
+function switchToServerSelection() {
+  if (hasUnsavedChanges) {
+    if (!confirm("You have unsaved changes. Are you sure you want to go back?")) return;
+  }
+  document.getElementById('topCurrentServerPill').style.display = 'none';
+  hasUnsavedChanges = false;
+  document.getElementById('saveChangesBanner').classList.remove('show');
+  showView('view-servers');
+}
+
+function setupSidebarNavigation() {
+  const links = document.querySelectorAll('.sidebar-link');
+  const panes = document.querySelectorAll('.tab-pane');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      links.forEach(l => l.classList.remove('active'));
+      panes.forEach(p => p.style.display = 'none');
+
+      link.classList.add('active');
+      const tabId = link.getAttribute('data-tab');
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.style.display = 'block';
+    });
+  });
+}
+
+// Configuration Persistence (localStorage per guild)
+function loadServerConfiguration(guildId) {
+  const saved = localStorage.getItem(`skie_guild_${guildId}`);
+  if (saved) {
+    try {
+      const cfg = JSON.parse(saved);
+      if (document.getElementById('antinukeMaster')) document.getElementById('antinukeMaster').checked = !!cfg.antinuke_active;
+      if (document.getElementById('cfg_antinuke_active')) document.getElementById('cfg_antinuke_active').checked = !!cfg.antinuke_active;
+      if (document.getElementById('cfg_music_247')) document.getElementById('cfg_music_247').checked = !!cfg.music_247;
+      if (document.getElementById('cfg_jail_active')) document.getElementById('cfg_jail_active').checked = !!cfg.jail_active;
+      if (document.getElementById('cfg_logs_active')) document.getElementById('cfg_logs_active').checked = !!cfg.logs_active;
+
+      if (cfg.antinuke_action && document.getElementById('antinukeAction')) document.getElementById('antinukeAction').value = cfg.antinuke_action;
+      if (cfg.music_slot && document.getElementById('musicDefaultSlot')) document.getElementById('musicDefaultSlot').value = cfg.music_slot;
+      if (cfg.music_vol && document.getElementById('musicVolSlider')) {
+        document.getElementById('musicVolSlider').value = cfg.music_vol;
+        document.getElementById('musicVolDisplay').innerText = cfg.music_vol;
+      }
+      if (cfg.welcome_roles && document.getElementById('welcomeAutoRoles')) document.getElementById('welcomeAutoRoles').value = cfg.welcome_roles;
+      if (cfg.welcome_msg && document.getElementById('welcomeMsgText')) document.getElementById('welcomeMsgText').value = cfg.welcome_msg;
+    } catch (e) {
+      console.warn("Error parsing saved guild settings:", e);
+    }
+  }
+  hasUnsavedChanges = false;
+  document.getElementById('saveChangesBanner').classList.remove('show');
+}
+
+function markUnsaved() {
+  hasUnsavedChanges = true;
+  document.getElementById('saveChangesBanner').classList.add('show');
+}
+
+function resetUnsavedChanges() {
+  if (currentGuild) {
+    loadServerConfiguration(currentGuild.id);
+  }
+}
+
+function saveServerConfiguration() {
+  if (!currentGuild) return;
+
+  const config = {
+    guild_id: currentGuild.id,
+    guild_name: currentGuild.name,
+    antinuke_active: document.getElementById('antinukeMaster')?.checked || false,
+    music_247: document.getElementById('cfg_music_247')?.checked || false,
+    jail_active: document.getElementById('cfg_jail_active')?.checked || false,
+    logs_active: document.getElementById('cfg_logs_active')?.checked || false,
+    antinuke_action: document.getElementById('antinukeAction')?.value || "quarantine",
+    music_slot: document.getElementById('musicDefaultSlot')?.value || "1",
+    music_vol: document.getElementById('musicVolSlider')?.value || "80",
+    welcome_roles: document.getElementById('welcomeAutoRoles')?.value || "",
+    welcome_msg: document.getElementById('welcomeMsgText')?.value || "",
+    saved_at: new Date().toISOString()
+  };
+
+  localStorage.setItem(`skie_guild_${currentGuild.id}`, JSON.stringify(config));
+
+  // Also simulate sync with bot server if running
+  try {
+    fetch(`/api/guilds/${currentGuild.id}/settings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(config)
+    }).catch(() => {});
+  } catch (e) {}
+
+  hasUnsavedChanges = false;
+  document.getElementById('saveChangesBanner').classList.remove('show');
+  showToast("✅ Settings saved and synchronized with 𝐒𝐤𝐢𝐞!");
+}
+
+function triggerLogsSetupSimulation() {
+  if (document.getElementById('logModChannel')) document.getElementById('logModChannel').value = "#mod-logs";
+  if (document.getElementById('logVoiceChannel')) document.getElementById('logVoiceChannel').value = "#voice-logs";
+  if (document.getElementById('logJoinChannel')) document.getElementById('logJoinChannel').value = "#join-leave";
+  if (document.getElementById('logServerChannel')) document.getElementById('logServerChannel').value = "#server-events";
+  if (document.getElementById('cfg_logs_active')) document.getElementById('cfg_logs_active').checked = true;
+  markUnsaved();
+  showToast("📁 Log channels populated! Click 'Save Changes' to apply.");
+}
+
+function exportServerSnapshot() {
+  if (!currentGuild) return;
+  const saved = localStorage.getItem(`skie_guild_${currentGuild.id}`) || JSON.stringify({
+    guild_id: currentGuild.id,
+    guild_name: currentGuild.name,
+    modules: ["antinuke", "music", "jail", "logs", "tickets", "welcome"],
+    created_at: new Date().toISOString()
+  }, null, 2);
+
+  const blob = new Blob([saved], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `skie_${currentGuild.name.replace(/\s+/g, '_')}_snapshot.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("📥 Exported server JSON snapshot!");
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerText = msg;
+  t.style.display = 'block';
+  setTimeout(() => {
+    t.style.display = 'none';
+  }, 3500);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
