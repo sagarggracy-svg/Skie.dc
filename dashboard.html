@@ -333,7 +333,7 @@
         Log in with Discord to inspect all servers where you have Administrator or Manage Server permissions. Add <strong>𝐒𝐤𝐢𝐞</strong> with 1-click or configure live Anti-Nuke, 24/7 Music, and Jail settings.
       </p>
 
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
         <!-- Official Discord OAuth2 Login Button -->
         <a id="btnDiscordLogin" href="#" class="discord-btn" onclick="initiateDiscordLogin(event)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -346,6 +346,22 @@
         <button class="demo-btn" onclick="startDemoMode()">
           ✨ Try Demo Mode (Test Server List)
         </button>
+      </div>
+
+      <!-- Quick OAuth2 Redirect URI Notice Box -->
+      <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 14px 18px; max-width: 680px; margin: 0 auto 36px; text-align: left; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <strong style="color: #fff;">🔑 Discord Developer Portal Setup:</strong>
+          <a href="https://discord.com/developers/applications/1558750474885406740/oauth2" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline; font-weight: 700; font-size: 0.8rem;">Open OAuth2 Settings ↗</a>
+        </div>
+        <div>
+          To allow Discord login, add this exact Redirect URI under your application's <strong>OAuth2 $
+ightarrow$ Redirects</strong>:
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <code id="currentRedirectDisplay" style="background: #090a10; color: #f87171; padding: 6px 12px; border-radius: 6px; font-family: monospace; font-size: 0.82rem; flex: 1; overflow-x: auto; white-space: nowrap; border: 1px solid var(--border);">https://...</code>
+            <button onclick="copyRedirectUri()" style="background: var(--bg-card); border: 1px solid var(--border); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; white-space: nowrap;">📋 Copy</button>
+          </div>
+        </div>
       </div>
 
       <!-- Feature Grid Showcase -->
@@ -759,5 +775,5 @@
   </div>
 
   <script src="app.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e0d88dcc254975',t:'MTc5MjU5MTgyOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
