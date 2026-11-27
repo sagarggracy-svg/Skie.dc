@@ -1,0 +1,1808 @@
+[
+  {
+    "name": "/8ball",
+    "params": "<question>",
+    "desc": "Ask the mystic 8-ball any question",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/afk",
+    "params": "[reason]",
+    "desc": "Set your AFK status so members know you are away when they ping you",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/afk-leaderboard",
+    "params": "",
+    "desc": "View members currently AFK in this server",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/antinuke disable",
+    "params": "",
+    "desc": "Disable Anti-Nuke defense in this server",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke enable",
+    "params": "",
+    "desc": "Enable Anti-Nuke defense in this server",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke settings",
+    "params": "[action_type] [channel_limit] [role_limit] [kick_limit] [ban_limit] [window_seconds] [alert_channel]",
+    "desc": "Customize Anti-Nuke defense thresholds and response",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke status",
+    "params": "",
+    "desc": "View current Anti-Nuke system status",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke whitelist add",
+    "params": "<user>",
+    "desc": "Add a trusted member or bot to the whitelist",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke whitelist list",
+    "params": "",
+    "desc": "List all whitelisted members in this server",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/antinuke whitelist remove",
+    "params": "<user>",
+    "desc": "Remove a user from the Anti-Nuke whitelist",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/autohunt",
+    "params": "",
+    "desc": "View or activate automated hunting status",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/automod anti_alt",
+    "params": "<enabled> [min_account_age_days] [action]",
+    "desc": "Auto-remove brand new accounts (alts) when they join",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/automod anti_invite",
+    "params": "<enabled>",
+    "desc": "Block Discord invite links in chat",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/automod anti_spam",
+    "params": "<enabled>",
+    "desc": "Block rapid spam messages",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/automod ghostping",
+    "params": "<enabled>",
+    "desc": "Expose people who ping someone and then delete the message",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/automod raid_mode",
+    "params": "<enabled>",
+    "desc": "Instantly freeze server verification during raids",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/autorole add",
+    "params": "<role>",
+    "desc": "Add a role to be granted automatically when members join (max 10)",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/autorole clear",
+    "params": "",
+    "desc": "Clear all auto-join roles for this server",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/autorole list",
+    "params": "",
+    "desc": "Display all roles assigned automatically when members join",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/autorole remove",
+    "params": "<role>",
+    "desc": "Remove a role from the auto-join list",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/avatar",
+    "params": "[user]",
+    "desc": "View and download a member's avatar",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/battle",
+    "params": "[opponent]",
+    "desc": "Challenge another user or a wild boss to an animal battle",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/battlesetting",
+    "params": "<stance>",
+    "desc": "Configure your combat stance in animal battles",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/birthday check",
+    "params": "[user]",
+    "desc": "Check your registered birthday or another member's birthday",
+    "cat": "birthday",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/birthday remove",
+    "params": "",
+    "desc": "Remove your registered birthday from the bot",
+    "cat": "birthday",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/birthday set",
+    "params": "<month> <day> [year]",
+    "desc": "Register your birthday with the bot",
+    "cat": "birthday",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/birthday setup",
+    "params": "<channel> [role] [message]",
+    "desc": "Configure the birthday announcement channel and celebration role",
+    "cat": "birthday",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/birthday status",
+    "params": "",
+    "desc": "View server birthday configuration",
+    "cat": "birthday",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/birthday test",
+    "params": "[user]",
+    "desc": "Dispatch a test birthday celebration announcement",
+    "cat": "birthday",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/birthday upcoming",
+    "params": "",
+    "desc": "View upcoming birthdays in the server",
+    "cat": "birthday",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/blackjack",
+    "params": "<bet>",
+    "desc": "Play interactive 21 Blackjack against the dealer",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/boost channel",
+    "params": "<channel>",
+    "desc": "Set the channel where booster celebration announcements will be posted",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost color",
+    "params": "[hex]",
+    "desc": "Customize booster embed side accent line color (Spectrum palette or Hex)",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost edit",
+    "params": "",
+    "desc": "Open the visual pop-up modal editor to customize booster celebration embed",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost preview",
+    "params": "",
+    "desc": "Preview your server booster celebration card exactly as members will see it",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost setup",
+    "params": "<channel> [message]",
+    "desc": "Quickly configure booster celebration channel and message",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost test",
+    "params": "",
+    "desc": "Send a live test booster celebration message into the configured channel",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost toggle",
+    "params": "[status]",
+    "desc": "Enable or disable server booster celebration announcements",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/boost variables",
+    "params": "",
+    "desc": "List all dynamic placeholders available for booster embeds",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buttonrole add",
+    "params": "<channel> <message_id> <role> <label> [emoji] [style]",
+    "desc": "Attach an interactive role button to an existing message",
+    "cat": "buttonrole",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buttonrole dropdown",
+    "params": "<roles> [title] [description] [placeholder] [channel] [max_choices]",
+    "desc": "Post a dropdown menu where members pick their own roles",
+    "cat": "buttonrole",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buttonrole list",
+    "params": "",
+    "desc": "List all active button role panels in the server",
+    "cat": "buttonrole",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buttonrole quick",
+    "params": "<channel> <title> <description> <role1> <label1> [role2] [label2] [role3] [label3] [role4] [label4] [role5] [label5]",
+    "desc": "Create an embed panel with up to 5 self-assignable role buttons",
+    "cat": "buttonrole",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buttonrole remove",
+    "params": "<channel> <message_id> <role>",
+    "desc": "Remove a button role from a message",
+    "cat": "buttonrole",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/buy",
+    "params": "<item> [quantity]",
+    "desc": "Purchase an item or weapon from the shop",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/cash",
+    "params": "[user]",
+    "desc": "Check your wallet, bank coins, and gems",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/channelmode chatonly",
+    "params": "[channel]",
+    "desc": "Enforce Chat-Only mode on a channel",
+    "cat": "mod",
+    "perm": "Manage Channels"
+  },
+  {
+    "name": "/channelmode mediaonly",
+    "params": "[channel]",
+    "desc": "Enforce Media-Only mode on a channel",
+    "cat": "mod",
+    "perm": "Manage Channels"
+  },
+  {
+    "name": "/channelmode reset",
+    "params": "[channel]",
+    "desc": "Reset channel mode back to normal",
+    "cat": "mod",
+    "perm": "Manage Channels"
+  },
+  {
+    "name": "/checklist",
+    "params": "",
+    "desc": "View your daily activity checklist",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/choose",
+    "params": "<options>",
+    "desc": "Randomly choose between comma-separated options",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/coinflip",
+    "params": "<bet> <choice>",
+    "desc": "Bet coins on heads or tails",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/color",
+    "params": "<hex>",
+    "desc": "Preview any hex color code with a rich embed",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/cookie",
+    "params": "<user>",
+    "desc": "Gift someone a delicious cookie",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/counting channel",
+    "params": "<channel>",
+    "desc": "Set the designated channel for the counting game",
+    "cat": "fun",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/crate",
+    "params": "<action> [crate_type]",
+    "desc": "Open mystery crates to win coins, gems, and beasts",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/daily",
+    "params": "",
+    "desc": "Claim your daily 500 coins bonus",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/define",
+    "params": "<word>",
+    "desc": "Look up the definition of a word",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/describe",
+    "params": "<animal>",
+    "desc": "View lore and battle stats of an animal",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/dex",
+    "params": "[animal]",
+    "desc": "Browse the complete animal index and discovery lore",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/eject",
+    "params": "<user>",
+    "desc": "Among Us style crewmate ejection sequence",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/emoji",
+    "params": "<emoji_name>",
+    "desc": "View or enlarge a server emoji",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/equip",
+    "params": "<item>",
+    "desc": "Equip an unlocked weapon for animal battles",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/feedback",
+    "params": "<message>",
+    "desc": "Submit feedback or suggestions to the server administrators",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/gamble",
+    "params": "<bet>",
+    "desc": "Roll a 100-sided die against the bot",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/games trivia",
+    "params": "[category]",
+    "desc": "Quick trivia — first correct answer wins coins",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/games wordchain",
+    "params": "[channel] [reset]",
+    "desc": "Set a word chain channel (each word starts with the last letter of the previous)",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/give",
+    "params": "<user> <amount>",
+    "desc": "Transfer coins to another member",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/giveaway create",
+    "params": "<prize> <duration_minutes> [winners]",
+    "desc": "Start a new giveaway with an interactive join button",
+    "cat": "fun",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/giveaway end",
+    "params": "<giveaway_id>",
+    "desc": "End a giveaway now and pick winners",
+    "cat": "fun",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/giveaway reroll",
+    "params": "<giveaway_id> [winners]",
+    "desc": "Pick new winner(s) for an ended giveaway",
+    "cat": "fun",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/help",
+    "params": "",
+    "desc": "Browse every command by category",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/hunt",
+    "params": "",
+    "desc": "Hunt for wild animals and collect them in your zoo!",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/inventory",
+    "params": "",
+    "desc": "View your crates, keys, weapons, and accessories",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/invite",
+    "params": "",
+    "desc": "Get the official bot invite links",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/invites check",
+    "params": "[user]",
+    "desc": "Check your or another member's invites",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/invites leaderboard",
+    "params": "",
+    "desc": "View server top inviters",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/jail extend",
+    "params": "<user> <minutes>",
+    "desc": "Extend jail sentence",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail info",
+    "params": "<user>",
+    "desc": "View jail record for a member",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail prisoners",
+    "params": "",
+    "desc": "List all detained prisoners",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail reduce",
+    "params": "<user> <minutes>",
+    "desc": "Reduce jail sentence",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail setup",
+    "params": "",
+    "desc": "Auto-create isolated #jail channel & @Jailed role",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail unjail",
+    "params": "<user>",
+    "desc": "Release a member from jail and restore their previous roles",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/jail user",
+    "params": "<member> <reason> [duration_minutes]",
+    "desc": "Jail a member, strip roles, and confine them to #jail",
+    "cat": "jail",
+    "perm": "Manage Roles"
+  },
+  {
+    "name": "/leaderboard",
+    "params": "[category]",
+    "desc": "View top server rankings for coins, zoo, or level",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/level leaderboard",
+    "params": "",
+    "desc": "View top active members in the server",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/level rank",
+    "params": "[member]",
+    "desc": "Check rank and XP progress",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/logs disable",
+    "params": "<log_type>",
+    "desc": "Disable a specific log channel or all logs",
+    "cat": "logs",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/logs set",
+    "params": "<log_type> <channel>",
+    "desc": "Set the channel for a specific log type",
+    "cat": "logs",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/logs setup",
+    "params": "",
+    "desc": "Automatically create an Admin-Only category with 5 dedicated log channels",
+    "cat": "logs",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/logs view",
+    "params": "",
+    "desc": "View all currently active log channels for this server",
+    "cat": "logs",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/marry accept",
+    "params": "",
+    "desc": "Accept a pending marriage proposal",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/marry decline",
+    "params": "",
+    "desc": "Decline a pending marriage proposal",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/marry divorce",
+    "params": "",
+    "desc": "Divorce your current marriage partner",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/marry propose",
+    "params": "<user>",
+    "desc": "Propose marriage to a special someone with a wedding ring",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/math",
+    "params": "<expression>",
+    "desc": "Evaluate a mathematical expression safely",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/mc applications",
+    "params": "<review_channel> [whitelist_role] [ping_role] [open]",
+    "desc": "Set up whitelist & staff applications (review channel, roles)",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc check",
+    "params": "<ip> [port] [edition]",
+    "desc": "Instantly query any Minecraft server's real-time status, players & location",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc refresh",
+    "params": "",
+    "desc": "Force an instant refresh of this server's configured Minecraft status card",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc remove",
+    "params": "",
+    "desc": "Remove the configured Minecraft server live status tracker",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc setup",
+    "params": "",
+    "desc": "Open the pop-up modal to configure your Minecraft server live status card",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc statuschannel",
+    "params": "<action>",
+    "desc": "Voice channel that shows live player count (e.g. 🟢 ONLINE: 12/50)",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/mc votereminder",
+    "params": "[channel] [links] [every_hours] [ping_role]",
+    "desc": "Ping members to vote for your server on server-list sites",
+    "cat": "minecraft",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/meme",
+    "params": "<template> <text>",
+    "desc": "Generate a classic text meme format",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/messages blacklist",
+    "params": "<channel>",
+    "desc": "Exclude a channel from counting towards message stats",
+    "cat": "welcome",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/messages check",
+    "params": "[user]",
+    "desc": "Check message count for a member",
+    "cat": "welcome",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/mod ban",
+    "params": "<member> [reason]",
+    "desc": "Ban a member from the server",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod case",
+    "params": "<number>",
+    "desc": "View details of a moderation case",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod clear",
+    "params": "<amount>",
+    "desc": "Clear messages from current channel (alias for /clear)",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod editsnipe",
+    "params": "",
+    "desc": "Show the last edited message in this channel",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod hide",
+    "params": "[channel]",
+    "desc": "Hide a channel from the server channel list for regular members",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod history",
+    "params": "<member>",
+    "desc": "Show all moderation cases for a member",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod kick",
+    "params": "<member> [reason]",
+    "desc": "Kick a member from the server and revoke verification status",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod lock",
+    "params": "[channel]",
+    "desc": "Lock a text channel to prevent members from sending messages",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod nick",
+    "params": "<member> [nickname]",
+    "desc": "Change a member's server nickname",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod nuke",
+    "params": "[channel]",
+    "desc": "Clone and recreate a channel to wipe all chat history instantly",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod punish reset",
+    "params": "",
+    "desc": "Reset the ladder to default (2: 1d timeout, 3: 7d tempban, 4: ban)",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod punish set",
+    "params": "<warns> <action> [duration]",
+    "desc": "Set what happens when a member reaches X warnings",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod punish toggle",
+    "params": "<enabled>",
+    "desc": "Turn the automatic punishment ladder on or off",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod punish view",
+    "params": "",
+    "desc": "View the automatic punishment ladder",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod purge",
+    "params": "<amount>",
+    "desc": "Purge messages from current channel (alias for /clear)",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod reason",
+    "params": "<number> <reason>",
+    "desc": "Change the reason of a moderation case",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod role",
+    "params": "<action> <member> <role>",
+    "desc": "Add or remove a role from a member",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod slowmode",
+    "params": "<seconds> [channel]",
+    "desc": "Set message slowmode delay on a channel",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod snipe",
+    "params": "",
+    "desc": "Show the last deleted message in this channel",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod timeout",
+    "params": "<member> <duration_minutes> [reason]",
+    "desc": "Timeout (mute) a member for a specified duration in minutes",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod unban",
+    "params": "<user_id> [reason]",
+    "desc": "Unban a user by numeric Discord ID",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod unhide",
+    "params": "[channel]",
+    "desc": "Make a hidden channel visible to regular members",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod unlock",
+    "params": "[channel]",
+    "desc": "Unlock a text channel to allow members to chat",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod untimeout",
+    "params": "<member> [reason]",
+    "desc": "Remove timeout from a member",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod warn",
+    "params": "<member> <reason>",
+    "desc": "Issue a formal warning to a member",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/mod warns",
+    "params": "<member>",
+    "desc": "View warning history of a member",
+    "cat": "mod",
+    "perm": "Ban Members"
+  },
+  {
+    "name": "/pic",
+    "params": "[topic]",
+    "desc": "Discover aesthetic photography and pictures",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/ping",
+    "params": "",
+    "desc": "Check real-time WebSocket and gateway latency",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/poll",
+    "params": "<question> <options>",
+    "desc": "Create an interactive poll",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/pray",
+    "params": "<user>",
+    "desc": "Send your prayers and blessings to a friend",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/premium banner",
+    "params": "[attachment] [image_url]",
+    "desc": "[PREMIUM] Change the bot's banner in your server only",
+    "cat": "utility",
+    "perm": "Manage Server"
+  },
+  {
+    "name": "/premium bio",
+    "params": "<text>",
+    "desc": "[PREMIUM] Change the bot's About Me in your server only",
+    "cat": "utility",
+    "perm": "Manage Server"
+  },
+  {
+    "name": "/premium check",
+    "params": "[user]",
+    "desc": "Check premium membership status and active perks",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/premium icon",
+    "params": "[attachment] [image_url]",
+    "desc": "[PREMIUM] Change the bot's avatar in your server only",
+    "cat": "utility",
+    "perm": "Manage Server"
+  },
+  {
+    "name": "/premium name",
+    "params": "<new_name>",
+    "desc": "[PREMIUM] Change the bot's name in your server only",
+    "cat": "utility",
+    "perm": "Manage Server"
+  },
+  {
+    "name": "/premium noprefix",
+    "params": "",
+    "desc": "[PREMIUM] View No-Prefix command usage instructions",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/premium reset",
+    "params": "[option]",
+    "desc": "[PREMIUM] Restore the normal Morphyz icon, banner, name, or bio in your server",
+    "cat": "utility",
+    "perm": "Manage Server"
+  },
+  {
+    "name": "/profile",
+    "params": "[user]",
+    "desc": "View a player's complete social profile and stats card",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/quest",
+    "params": "",
+    "desc": "View and claim your active daily quests",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/rename",
+    "params": "<animal> <nickname>",
+    "desc": "Give a custom nickname to an animal in your zoo",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/roll",
+    "params": "[sides]",
+    "desc": "Roll a dice with custom number of sides",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/rules",
+    "params": "",
+    "desc": "View community and bot usage rules",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/sacrifice",
+    "params": "<animal> [count]",
+    "desc": "Sacrifice animals from your zoo for weapon shards & essence",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/sell",
+    "params": "<target> [count]",
+    "desc": "Sell animals from your zoo or inventory items for coins",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/send builder",
+    "params": "[channel] [message_link]",
+    "desc": "Launch the interactive visual message builder in Discord",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/send embed",
+    "params": "[channel]",
+    "desc": "Pop-up editor to send a custom embed to a channel",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/send message",
+    "params": "<message> [channel]",
+    "desc": "Send a custom text message to a channel as the bot",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server counters",
+    "params": "<action>",
+    "desc": "Create or remove live server stats channels (members, bots, boosts)",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server goodbye channel",
+    "params": "<channel>",
+    "desc": "Set the goodbye channel and turn goodbye messages on",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server goodbye edit",
+    "params": "",
+    "desc": "Customize the goodbye message (supports {username}, {server}, {membercount}...)",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server goodbye test",
+    "params": "",
+    "desc": "Send a test goodbye message using your account",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server goodbye toggle",
+    "params": "<enabled>",
+    "desc": "Turn goodbye messages on or off",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server levelreward add",
+    "params": "<level> <role>",
+    "desc": "Give a role when members reach a level",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server levelreward list",
+    "params": "",
+    "desc": "List all level role rewards",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server levelreward remove",
+    "params": "<level> <role>",
+    "desc": "Remove a level role reward",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server setup",
+    "params": "<category>",
+    "desc": "Deploy complete categorized channels with custom small-caps font, | delimiter, and server roles",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server starboard",
+    "params": "[channel] [stars_needed] [emoji]",
+    "desc": "Repost popular messages (⭐ reactions) into a starboard channel",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/server suggestions",
+    "params": "<channel>",
+    "desc": "Set the channel where /suggestion submit posts go (with approve/deny buttons)",
+    "cat": "mod",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/shards",
+    "params": "",
+    "desc": "View bot gateway shard status",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/ship",
+    "params": "<user1> [user2]",
+    "desc": "Calculate the love compatibility between two users",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/shop",
+    "params": "",
+    "desc": "Browse items, crates, weapons, and accessories",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/slots",
+    "params": "<bet>",
+    "desc": "Play the 3-reel slot machine",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp link",
+    "params": "<username> [edition]",
+    "desc": "Link your Minecraft account to your Discord profile",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp profile",
+    "params": "[member]",
+    "desc": "Show a member's linked Minecraft profile & skin",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp staffapply",
+    "params": "",
+    "desc": "Apply to join the staff team",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp unlink",
+    "params": "",
+    "desc": "Unlink your Minecraft account",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp vote",
+    "params": "",
+    "desc": "Get the server's vote links",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/smp whitelist",
+    "params": "",
+    "desc": "Apply to get whitelisted on the Minecraft server",
+    "cat": "minecraft",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social bite",
+    "params": "<user>",
+    "desc": "Playfully bite someone",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social boop",
+    "params": "<user>",
+    "desc": "Boop someone on their nose",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social cuddle",
+    "params": "<user>",
+    "desc": "Cuddle up cozily with someone",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social emote",
+    "params": "<action>",
+    "desc": "Express your mood or emote in chat",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social greet",
+    "params": "<user>",
+    "desc": "Wave and greet someone warmly",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social handhold",
+    "params": "<user>",
+    "desc": "Hold hands intimately with someone",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social highfive",
+    "params": "<user>",
+    "desc": "Give someone a high-five",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social hug",
+    "params": "<user>",
+    "desc": "Give someone a warm, loving hug",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social pat",
+    "params": "<user>",
+    "desc": "Gently pat someone on the head",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social poke",
+    "params": "<user>",
+    "desc": "Poke someone playfully",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social slap",
+    "params": "<user>",
+    "desc": "Slap someone playfully or dramatically",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social snuggle",
+    "params": "<user>",
+    "desc": "Snuggle affectionately with someone",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social stare",
+    "params": "<user>",
+    "desc": "Stare intensely at someone",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/social tickle",
+    "params": "<user>",
+    "desc": "Tickle someone until they laugh",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/stats",
+    "params": "",
+    "desc": "View bot operational statistics and uptime",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/status live",
+    "params": "<channel>",
+    "desc": "Setup an auto-refreshing Live Statistics Dashboard in a channel",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/status set",
+    "params": "<activity> [activity_type] [presence]",
+    "desc": "Set the bot's custom activity status",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/status view",
+    "params": "",
+    "desc": "View real-time live bot statistics dashboard",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/sticky add",
+    "params": "<channel> <message>",
+    "desc": "Add sticky note to a channel",
+    "cat": "mod",
+    "perm": "Manage Messages"
+  },
+  {
+    "name": "/sticky remove",
+    "params": "<channel>",
+    "desc": "Remove sticky message from channel",
+    "cat": "mod",
+    "perm": "Manage Messages"
+  },
+  {
+    "name": "/stream add",
+    "params": "<platform> <streamer> <channel> [ping] [message]",
+    "desc": "Link a YouTube, Twitch, or Kick channel for automatic announcements",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/stream list",
+    "params": "",
+    "desc": "List all configured stream and video announcement alerts",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/stream remove",
+    "params": "<id>",
+    "desc": "Remove a stream alert by its ID",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/stream test",
+    "params": "<platform> <streamer> <channel>",
+    "desc": "Send a test stream announcement card into the configured channel",
+    "cat": "utility",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/suggestion submit",
+    "params": "<idea>",
+    "desc": "Submit an idea for community review",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/team",
+    "params": "[slot] [animal]",
+    "desc": "View or manage your active battle team",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc disable",
+    "params": "",
+    "desc": "Disable the Temp VC system in this server",
+    "cat": "voice",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/tempvc hide",
+    "params": "",
+    "desc": "Hide your temporary voice channel from the server list",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc kick",
+    "params": "<member>",
+    "desc": "Disconnect and block a member from your temp VC",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc limit",
+    "params": "<slots>",
+    "desc": "Set user limit on your temporary voice channel",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc lock",
+    "params": "",
+    "desc": "Lock your temporary voice channel",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc panel",
+    "params": "",
+    "desc": "Resend the Temp VC control panel into the current voice channel",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc rename",
+    "params": "<new_name>",
+    "desc": "Rename your temporary voice channel",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc setup",
+    "params": "<hub_channel> [category] [name_template]",
+    "desc": "Designate a voice channel as the Join-to-Create Temp VC hub",
+    "cat": "voice",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/tempvc status",
+    "params": "",
+    "desc": "View current Temp VC hub configuration",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc unhide",
+    "params": "",
+    "desc": "Make your temporary voice channel visible on the server list",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/tempvc unlock",
+    "params": "",
+    "desc": "Unlock your temporary voice channel",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/ticket add",
+    "params": "<user>",
+    "desc": "Add a member to this ticket channel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket button add",
+    "params": "<label> [emoji] [style] [channel_prefix] [ping_role] [welcome_message]",
+    "desc": "Add a custom button to the ticket panel (max 10)",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket button edit",
+    "params": "<number> [label] [emoji] [style] [channel_prefix] [ping_role] [welcome_message]",
+    "desc": "Edit an existing ticket panel button",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket button list",
+    "params": "",
+    "desc": "Show all ticket panel buttons",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket button remove",
+    "params": "<number>",
+    "desc": "Remove a ticket panel button",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket button reset",
+    "params": "",
+    "desc": "Restore the default ticket panel buttons",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket category",
+    "params": "<category>",
+    "desc": "Choose the category where new ticket channels are created",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket claim",
+    "params": "",
+    "desc": "Claim a ticket as staff handler",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket close",
+    "params": "[reason]",
+    "desc": "Close current support ticket",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket delete",
+    "params": "",
+    "desc": "Instantly delete ticket channel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket edit",
+    "params": "",
+    "desc": "Open the visual pop-up editor to configure the ticket panel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket logs",
+    "params": "[channel]",
+    "desc": "Set the channel where all ticket logs & transcripts are sent",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket modmail",
+    "params": "<enabled> [category] [staff_role]",
+    "desc": "Let members DM the bot to open a private staff ticket (Modmail)",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket panel",
+    "params": "[channel]",
+    "desc": "Post the categorized support ticket panel (up to 5 buttons)",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket remove",
+    "params": "<user>",
+    "desc": "Remove a member from this ticket channel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket rename",
+    "params": "<name>",
+    "desc": "Rename current ticket channel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket transcript",
+    "params": "",
+    "desc": "Generate plain text transcript of ticket conversation",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/ticket unlock",
+    "params": "",
+    "desc": "Unlock a closed ticket channel",
+    "cat": "ticket",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/translate",
+    "params": "<text> [language]",
+    "desc": "Translate text into another language",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/trigger create",
+    "params": "<trigger> <response>",
+    "desc": "Create a trigger auto-responder",
+    "cat": "mod",
+    "perm": "Manage Messages"
+  },
+  {
+    "name": "/trigger delete",
+    "params": "<id>",
+    "desc": "Delete a trigger",
+    "cat": "mod",
+    "perm": "Manage Messages"
+  },
+  {
+    "name": "/trigger list",
+    "params": "",
+    "desc": "List active triggers",
+    "cat": "mod",
+    "perm": "Manage Messages"
+  },
+  {
+    "name": "/truthdare play",
+    "params": "[mode]",
+    "desc": "Play a Truth or Dare prompt",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/upgrade",
+    "params": "<feature>",
+    "desc": "Upgrade your hunting luck or weapon power",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/utility announce",
+    "params": "<channel> <message>",
+    "desc": "Post an announcement card into a channel",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/utility remind",
+    "params": "<when> <message>",
+    "desc": "Set a reminder (e.g. 10m, 2h, 1d)",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/utility report",
+    "params": "<user> <reason>",
+    "desc": "Submit a member report to server staff",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/utility serverinfo",
+    "params": "",
+    "desc": "Display server statistics",
+    "cat": "utility",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/verify disable",
+    "params": "[unlock_channels] [delete_verify_channel]",
+    "desc": "Remove the verification system and unlock channels for everyone",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/verify lockdown",
+    "params": "",
+    "desc": "Instantly lock all server channels so unverified members cannot see any channel",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/verify setup",
+    "params": "<channel> <role> [min_account_age_days] [isolate_channels] [title] [description]",
+    "desc": "Deploy Legit ID Verification panel and isolate channels until verified",
+    "cat": "security",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/voice role_setup",
+    "params": "<role>",
+    "desc": "Designate role given to members while in voice channels",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/voice stats",
+    "params": "[user]",
+    "desc": "Check voice activity stats for a member",
+    "cat": "voice",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/wallpaper",
+    "params": "",
+    "desc": "Get a beautiful high-resolution wallpaper",
+    "cat": "fun",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/weapon",
+    "params": "",
+    "desc": "View equipped weapon and combat stats",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/weaponshard",
+    "params": "",
+    "desc": "Check weapon shards and craft upgraded weaponry",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/weekly",
+    "params": "",
+    "desc": "Claim your weekly mega reward (Coins, Iron Crate & Shards)",
+    "cat": "economy",
+    "perm": "Everyone"
+  },
+  {
+    "name": "/welcome button add",
+    "params": "<label> <response> [emoji]",
+    "desc": "Add an interactive button to welcome cards (sends ephemeral text on click)",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome button clear",
+    "params": "",
+    "desc": "Remove all interactive buttons from welcome cards",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome channel",
+    "params": "<channel>",
+    "desc": "Set the channel where welcome greetings will be posted",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome color",
+    "params": "[hex]",
+    "desc": "Customize welcome embed side accent line color (Spectrum palette or Hex)",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome edit",
+    "params": "",
+    "desc": "Open the visual pop-up editor to customize welcome title, desc, and banner",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome preview",
+    "params": "",
+    "desc": "Preview your welcome card exactly as new members will see it",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome test",
+    "params": "",
+    "desc": "Send a live test welcome message into the configured channel",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome toggle",
+    "params": "[status]",
+    "desc": "Enable or disable welcome greeting messages",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/welcome variables",
+    "params": "",
+    "desc": "List all dynamic placeholders available for welcome embeds",
+    "cat": "welcome",
+    "perm": "Administrator"
+  },
+  {
+    "name": "/zoo",
+    "params": "[user]",
+    "desc": "View your collection of caught animals",
+    "cat": "economy",
+    "perm": "Everyone"
+  }
+]
