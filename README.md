@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="assets/logo.png" width="130" height="130" alt="Skie Logo" style="border-radius: 50%; box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);" />
+  <img src="assets/logo.png" width="130" height="130" alt="Morphyz Logo" style="border-radius: 50%; box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);" />
 </p>
 
-<h1 align="center">⚡ 𝐒𝐤𝐢𝐞 — The Ultimate All-In-One Discord Bot</h1>
+<h1 align="center">⚡ 𝐌𝐨𝐫𝐩𝐡𝐲𝐳 — The Ultimate All-In-One Discord Bot</h1>
 
 <p align="center">
   <strong>"One bot. Every community."</strong>
 </p>
 
 <p align="center">
-  <a href="https://discord.com/oauth2/authorize?client_id=1558750474885406740&permissions=8&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Discord-Invite%20Skie-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Invite 𝐒𝐤𝐢𝐞" /></a>
+  <a href="https://discord.com/oauth2/authorize?client_id=1558750474885406740&permissions=8&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Discord-Invite%20Morphyz-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Invite 𝐌𝐨𝐫𝐩𝐡𝐲𝐳" /></a>
   <img src="https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.13" />
   <img src="https://img.shields.io/badge/discord.py-2.7+-blue?style=for-the-badge&logo=discord" alt="discord.py" />
-  <img src="https://img.shields.io/badge/Architecture-33%20Suites%20%7C%20230%20Cmds-ef4444?style=for-the-badge" alt="Architecture" />
+  <img src="https://img.shields.io/badge/Architecture-32%20Suites%20%7C%20258%20Cmds-ef4444?style=for-the-badge" alt="Architecture" />
   <img src="https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge" alt="MIT License" />
 </p>
 
@@ -20,9 +20,9 @@
 
 ## 📖 Overview
 
-**𝐒𝐤𝐢𝐞** is an enterprise-grade, all-in-one Discord bot engineered to replace the clutter of 10+ separate bots in a community server. It brings real-time **Anti-Nuke defense**, **24/7 multi-VC music streaming**, **disciplinary jail containment**, **automated audit logging**, **join-to-create temporary voice channels**, and an **in-Discord interactive configuration engine** into a single, unified, high-performance architecture.
+**𝐌𝐨𝐫𝐩𝐡𝐲𝐳** is an enterprise-grade, all-in-one Discord bot engineered to replace the clutter of 10+ separate bots in a community server. It brings real-time **Anti-Nuke defense**, **disciplinary jail containment**, **automated audit logging**, **join-to-create temporary voice channels**, and an **in-Discord interactive configuration engine** into a single, unified, high-performance architecture.
 
-Designed for maximum reliability, Skie operates with zero heavy native compilation requirements, persistent SQLite Write-Ahead Logging (WAL mode), role-hierarchy protection, and full mobile management support.
+Designed for maximum reliability, Morphyz operates with zero heavy native compilation requirements, persistent SQLite Write-Ahead Logging (WAL mode), role-hierarchy protection, and full mobile management support.
 
 ---
 
@@ -31,14 +31,13 @@ Designed for maximum reliability, Skie operates with zero heavy native compilati
 | Module | What It Does | Key Commands |
 |---|---|---|
 | 🛡️ **Anti-Nuke Defense Shield** | Real-time sliding-window surveillance blocks rogue admins and mass-destruction attacks. Automatically quarantines or bans perpetrators. | `/antinuke enable`<br>`/antinuke settings`<br>`/antinuke whitelist` |
-| 🎶 **24/7 Multi-VC Music Engine** | Streams 24/7 YouTube and radio audio across 3 concurrent voice channels with real-time DSP filters (Bassboost, Nightcore, 8D audio). | `/music play`<br>`/music 247`<br>`/music filter` |
 | ⚖️ **Disciplinary Jail System** | Automatically strips administrative roles, confines problem members to an isolated `#jail` channel, and auto-restores their roles upon release. | `/jail setup`<br>`/jail user`<br>`/jail unjail` |
 | 📜 **Automated Audit Logging** | One-click automatic setup creates an Admin-Only category with 5 dedicated logging channels for Mod, Server, Voice, Economy, and Join/Leave events. | `/logs setup`<br>`/logs view` |
 | 🔊 **Join-to-Create Temp VC** | Dynamic voice lounges automatically generated when members connect to a hub channel, complete with interactive control panels. | `/tempvc setup`<br>`/tempvc panel` |
 | 🔘 **Interactive Button Roles** | Self-assignable role panels with up to 5 colored buttons per embed message. | `/buttonrole quick`<br>`/buttonrole add` |
 | 📩 **Support Ticket Desk** | Multi-category support desks with staff claiming, closing timers, and downloadable chat transcripts. | `/ticket panel`<br>`/ticket transcript` |
 | ✅ **Legit ID Verification** | Isolates all server channels until members pass verification. If a member is kicked, their verification is revoked automatically. | `/verify setup`<br>`/verify lockdown` |
-| 🌐 **Showcase Website & Studio** | Fast static showcase website listing all 233 commands, plus visual Discohook-style message studio (`editor.html`). | Vercel / Static |
+| 🌐 **Showcase Website & Studio** | Fast static showcase website listing all 258 commands, plus visual Discohook-style message studio (`editor.html`). | Vercel / Static |
 
 ---
 
@@ -46,13 +45,13 @@ Designed for maximum reliability, Skie operates with zero heavy native compilati
 
 ```text
 ├── assets/
-│   ├── logo.png             # Official high-resolution 512x512 Skie logo
+│   ├── logo.png             # Official high-resolution 512x512 Morphyz logo
 │   └── logo_128.png         # Optimized web badge logo
 ├── data/                    # Persistent SQLite database storage (WAL mode)
-├── app.py                   # Master all-in-one bot engine (Anti-Nuke, 24/7 Music, Tickets)
+├── app.py                   # Master all-in-one bot engine (Anti-Nuke, Tickets)
 ├── bot.py                   # Synchronized runtime bot implementation
 ├── main.py                  # Standard container execution entrypoint
-├── index.html               # Showcase website with search across all 233 commands
+├── index.html               # Showcase website with search across all 258 commands
 ├── editor.html              # Discohook-style embed & message visual studio
 ├── style.css                # Crimson red theme design system
 ├── vercel.json              # Vercel deployment configuration
@@ -70,8 +69,8 @@ Designed for maximum reliability, Skie operates with zero heavy native compilati
 ### Option 1: 24/7 Server Hosting Panel (Pterodactyl / Container)
 1. Fork or clone this repository:
    ```bash
-   git clone https://github.com/your-username/skie-bot.git
-   cd skie-bot
+   git clone https://github.com/your-username/morphyz-bot.git
+   cd morphyz-bot
    ```
 2. Install Python dependencies:
    ```bash
@@ -89,7 +88,7 @@ Designed for maximum reliability, Skie operates with zero heavy native compilati
 ### Option 2: Deploy Showcase Website to Vercel / Netlify (100% Free)
 1. In your browser, open **`index.html`** or use **`editor.html`** to build messages.
 2. Deploy directly to Vercel or Netlify via GitHub or direct folder upload.
-3. Your bot showcase site is live worldwide with free HTTPS, listing all 233 slash commands!
+3. Your bot showcase site is live worldwide with free HTTPS, listing all 258 slash commands!
 
 ---
 
@@ -98,17 +97,16 @@ Designed for maximum reliability, Skie operates with zero heavy native compilati
 
 ## ⚙️ Seamless In-Discord Setup & Command Discovery
 
-* **100% In-Discord Setup:** 𝐒𝐤𝐢𝐞 is configured directly inside your Discord server using intuitive automated commands (e.g. `/jail setup`, `/logs setup`, `/antinuke settings`, `/tempvc setup`). No external manual setup or terminal required.
+* **100% In-Discord Setup:** 𝐌𝐨𝐫𝐩𝐡𝐲𝐳 is configured directly inside your Discord server using intuitive automated commands (e.g. `/jail setup`, `/logs setup`, `/antinuke settings`, `/tempvc setup`). No external manual setup or terminal required.
 * **Understand All Commands Easily:**
   1. **Directly in Discord:** Type `/help` to browse full syntax, required permissions, and feature guides interactively.
   2. **Via the `/help` Command:** Type `/help` directly in any Discord server channel to access the complete 22-category directory.
 
-## 📋 Slash Command Architecture (33 Suites | 230 Commands)
+## 📋 Slash Command Architecture (32 Suites | 258 Commands)
 
-Skie uses Discord's official **Command Group Architecture**, keeping global top-level items at **92 / 100** so your bot will never crash from the Discord 100 global command limit.
+Morphyz uses Discord's official **Command Group Architecture**, keeping global top-level items at **92 / 100** so your bot will never crash from the Discord 100 global command limit.
 
 * **`/mod` (17 subcommands):** `/mod ban`, `/mod unban`, `/mod kick`, `/mod timeout`, `/mod untimeout`, `/mod warn`, `/mod warns`, `/mod lock`, `/mod unlock`, `/mod hide`, `/mod unhide`, `/mod slowmode`, `/mod nuke`, `/mod nick`, `/mod role`, `/mod clear`, `/mod purge`
-* **`/music` (22 subcommands):** `/music play`, `/music search`, `/music pause`, `/music resume`, `/music skip`, `/music stop`, `/music nowplaying`, `/music queue`, `/music clearqueue`, `/music loop`, `/music shuffle`, `/music autoplay`, `/music seek`, `/music replay`, `/music volume`, `/music join`, `/music leave`, `/music 247`, `/music filter`, `/music lofi`, `/music phonk`, `/music bhojpuri`
 * **`/antinuke` (7 subcommands):** `/antinuke enable`, `/antinuke disable`, `/antinuke settings`, `/antinuke status`, `/antinuke whitelist add`, `/antinuke whitelist remove`, `/antinuke whitelist list`
 * **`/jail` (7 subcommands):** `/jail setup`, `/jail user`, `/jail unjail`, `/jail info`, `/jail extend`, `/jail reduce`, `/jail prisoners`
 * **`/tempvc` (11 subcommands):** `/tempvc setup`, `/tempvc panel`, `/tempvc lock`, `/tempvc unlock`, `/tempvc hide`, `/tempvc unhide`, `/tempvc limit`, `/tempvc rename`, `/tempvc kick`, `/tempvc status`, `/tempvc disable`
