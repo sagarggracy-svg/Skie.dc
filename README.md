@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="130" height="130" alt="Morphyz Logo" style="border-radius: 50%; box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);" />
+  <img src="Assets/logo.png" width="130" height="130" alt="Morphyz Logo" style="border-radius: 50%; box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);" />
 </p>
 
 <h1 align="center">⚡ 𝐌𝐨𝐫𝐩𝐡𝐲𝐳 — The Ultimate All-In-One Discord Bot</h1>
